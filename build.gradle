@@ -19,6 +19,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+jacocoTestCoverageVerification { 
+	violationRules { 
+		rule { limit { minimum = 0.2 } }
+	}
+}
+
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
