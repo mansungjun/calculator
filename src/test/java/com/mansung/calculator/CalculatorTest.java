@@ -1,6 +1,9 @@
 package com.mansung.calculator;
 
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+import com.mansung.calculator.Calculator;
 
 
 public class CalculatorTest {
