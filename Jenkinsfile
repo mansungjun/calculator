@@ -83,7 +83,11 @@ pipeline {
         //     steps { 
         //         sh "docker push  msjun/calculator" 
         //     } 
-        // }           
+        // }      
+        post {
+            always { sh "docker stop calculator" }
+
+        }     
    
     }
 }
