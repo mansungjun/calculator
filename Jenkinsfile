@@ -60,7 +60,7 @@ pipeline {
 
         stage("Docker build") { 
             steps { 
-                sh "docker build -t calculator" 
+                sh "docker build -t msjun/calculator" 
             } 
         }
 
@@ -73,7 +73,7 @@ pipeline {
 
         stage("Deploy to stage") { 
             steps { 
-                sh "docker run -d --rm -p 8765:8080 --name calculator calculator"
+                sh "docker run -d --rm -p 8765:8080 --name calculator msjun/calculator"
 
             } 
         }
@@ -86,7 +86,7 @@ pipeline {
             }
 
             post {
-                always { sh "docker stop calculator" }
+                always { sh "docker stop msjun/calculator" }
 
             }     
         }
