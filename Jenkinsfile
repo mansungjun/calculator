@@ -58,17 +58,25 @@ pipeline {
             } 
         }
 
-        stage("Docker build") { 
+        stage("Acceptance test") { 
             steps { 
-                sh "docker build -t calculator" 
+                sleep 60
+                sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+ 
             } 
         }
 
-        stage("Docker push") { 
-            steps { 
-                sh "docker push  msjun/calculator" 
-            } 
-        }           
+        // stage("Docker build") { 
+        //     steps { 
+        //         sh "docker build -t calculator" 
+        //     } 
+        // }
+
+        // stage("Docker push") { 
+        //     steps { 
+        //         sh "docker push  msjun/calculator" 
+        //     } 
+        // }           
    
     }
 }
