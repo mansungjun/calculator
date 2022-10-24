@@ -58,6 +58,19 @@ pipeline {
             } 
         }
 
+        stage("Docker build") { 
+            steps { 
+                sh "docker build -t calculator" 
+            } 
+        }
+
+        stage("Docker push") { 
+            steps { 
+                sh "docker push  msjun/calculator" 
+            } 
+        }  
+
+
         stage("Deploy to stage") { 
             steps { 
                 sh "docker run -d --rm -p 8765:8080 --name calculator calculator"
@@ -71,24 +84,14 @@ pipeline {
                 sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
  
             }
-             
+
             post {
                 always { sh "docker stop calculator" }
 
             }     
         }
 
-        // stage("Docker build") { 
-        //     steps { 
-        //         sh "docker build -t calculator" 
-        //     } 
-        // }
-
-        // stage("Docker push") { 
-        //     steps { 
-        //         sh "docker push  msjun/calculator" 
-        //     } 
-        // }      
+        
        
    
     }
