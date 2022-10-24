@@ -60,7 +60,7 @@ pipeline {
 
         stage("Docker build") { 
             steps { 
-                sh "docker build -t msjun/calculator" 
+                sh "docker build -t msjun/calculator ." 
             } 
         }
 

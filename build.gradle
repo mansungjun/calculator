@@ -18,6 +18,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'junit:junit:4.13'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation("io.cucumber:cucumber-java:7.2.0")
+
 }
 
 jacocoTestCoverageVerification { 
@@ -26,8 +28,12 @@ jacocoTestCoverageVerification {
 	}
 }
 
-
+tasks.register('acceptanceTest', Test) { 
+	include '**/acceptance/**' 
+	systemProperties System.getProperties() 
+}
 
 tasks.named('test') {
-	useJUnitPlatform()
+	useJUnitPlatform() exclude '**/acceptance/**'
 }
+
